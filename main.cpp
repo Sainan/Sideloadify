@@ -1,5 +1,4 @@
 #include <fstream>
-#include <iostream>
 #include <windows.h>
 
 #include "WindowsExecutableFile.hpp"
