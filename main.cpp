@@ -1,11 +1,13 @@
 #include <fstream>
 #include <windows.h>
 
+#include <main.hpp>
+
 #include "WindowsExecutableFile.hpp"
 
-int main(int argc, const char** argv)
+int entrypoint(std::vector<std::string>&& args, bool console)
 {
-	if (argc < 2)
+	if (args.size() < 2)
 	{
 		MessageBoxA(0, "Drop the EXE you would like to sideloadify onto sideloadify.exe.", "Sideloadify", MB_OK | MB_ICONERROR);
 		return 1;
@@ -13,7 +15,7 @@ int main(int argc, const char** argv)
 
 	try
 	{
-		std::string path = argv[1];
+		std::string path = args[1];
 		vm86::WindowsExecutableFile exe(path);
 		const auto loadConfig = exe.getDataDirectoryRvaAndSize(vm86::DATADIRECTORY_LOAD_CONFIG);
 		const auto DependentLoadFlags_offset = exe.getRvaOffsetInFile(loadConfig.rva + 78);
@@ -40,3 +42,5 @@ int main(int argc, const char** argv)
 
 	return 0;
 }
+
+SOUP_MAIN_GUI(entrypoint)
