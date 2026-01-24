@@ -1,8 +1,9 @@
 #include <fstream>
 #ifdef CLI_BUILD
 #include <iostream>
-#endif
+#else
 #include <windows.h>
+#endif
 
 #include <main.hpp>
 

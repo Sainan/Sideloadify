@@ -2,6 +2,7 @@
 
 #include "WindowsExecutableFile.hpp"
 
+#include <cstring> // strlen
 #include <stdexcept>
 
 namespace vm86
